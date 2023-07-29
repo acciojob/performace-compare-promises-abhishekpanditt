@@ -13,3 +13,29 @@ const apiUrls = [
 ];
 
 // You can write your code here
+async function callAllPromise(){
+	const startTime=performance.now();
+	let response=await apiUrls.map((url)=>{
+		fetch(url);
+	})
+	let x=Promise.all(response);
+	x.then(()=>{
+		const endTime=performance.now();
+		const elasped=endTime-startTime;
+		document.querySelector("#output-all").textContent = elasped;
+	})
+}
+
+
+async function callAnyPromise(){
+	const startTime=performance.now();
+	let response=await apiUrls.map((url)=>{
+		fetch(url);
+	})
+	let x=Promise.all(response);
+	x.then(()=>{
+		const endTime=performance.now();
+		const elasped=endTime-startTime;
+		document.querySelector("#output-any").textContent = elasped;
+	})
+}
